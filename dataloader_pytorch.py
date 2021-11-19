@@ -6,20 +6,10 @@ from tqdm import tqdm
 import torch
 import torchvision
 from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import random_split
 from torchvision.transforms import transforms
 
-###Defining the hyperparameters####
-
 dataset_path = './dataset/'
-n_epochs = 3
-batch_size_train = 64
-batch_size_test = 1000
-learning_rate = 0.01
-momentum = 0.5
-log_interval = 10
-random_seed = 1
-torch.manual_seed(random_seed)
-
 
 def get_images_and_labels(dir_path):
     '''
@@ -58,7 +48,13 @@ class ImageDataset(Dataset):
         return sample
 
 if __name__ == '__main__':
-    train_dataset = ImageDataset(dataset_path)
-    dataloader = DataLoader(train_dataset, batch_size = 64, shuffle=True)
+    Imgdataset = ImageDataset(dataset_path)
+    train_size = int(len(Imgdataset)*0.8)
+    valid_size = int(len(Imgdataset)*0.1)
+    test_size = int(len(Imgdataset)*0.1)
+    train_data, valid_data, test_data = random_split(Imgdataset, [train_size, valid_size, test_size])
+    print(train_data)
+    dataloader = DataLoader(train_data, batch_size = 64, shuffle=True)
+    print(dataloader)
     for index, batch_data in enumerate(dataloader):
         print(index, batch_data['image'].shape, batch_data['label'].shape)
