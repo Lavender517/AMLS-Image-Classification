@@ -18,6 +18,7 @@ def get_images_and_labels(dir_path):
     :return: images_list, labels_list
     '''
 
+    print("BEGIN TO LOAD DATA!")
     dataset_csv = pd.read_csv(dir_path + 'label.csv')
     data_classes = ['no_tumor', 'meningioma_tumor', 'glioma_tumor', 'pituitary_tumor']
     images_list = dataset_csv['file_name']                        # images_name list
