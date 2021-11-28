@@ -12,9 +12,9 @@ parser.add_argument('--dir_path', type=str, default='./dataset/', help='The data
 parser.add_argument('--batch_size', type=int, default=64, help='The data to be included in each epoch')
 parser.add_argument('--n_epochs', type=int, default=100, help='Training epochs = samples_num / batch_size')
 parser.add_argument('--lr', type=float, default=0.001, help='Learning Rate')
-parser.add_argument('--weight_decay', type=float, default=1e-4, help='Regularization coefficient, usually use 5 times, for example: 1e-4/5e-4/1e-5/5e-5')
-parser.add_argument('--dropout', type=float, default=0.5, help='Dropout coefficient')
-parser.add_argument('--device', type=int, default=6, help='The specified GPU number to be used')
+parser.add_argument('--weight_decay', type=float, default=1e-5, help='Regularization coefficient, usually use 5 times, for example: 1e-4/5e-4/1e-5/5e-5')
+parser.add_argument('--dropout', type=float, default=0.15, help='Dropout coefficient')
+parser.add_argument('--device', type=int, default=1, help='The specified GPU number to be used')
 parser.add_argument('--early_stop_TH', type=int, default=10, help='The theshold value of the valid_loss continue_bigger_num in early stopping criterion')
 args = parser.parse_args()
 
@@ -44,11 +44,11 @@ def train():
     Train the Model
     '''
 
-    model.train()
     best_val_loss, continue_bigger_num, batch_num = float('inf'), 0, 0
 
     # Begin to train
     for epoch in range(args.n_epochs):
+        model.train() # Dropout added in Model Architecture
         train_loss, correct = 0.0, 0.0
         for data in train_loader:
             batch_num += 1

@@ -1,0 +1,124 @@
+BEGIN TO LOAD DATA!
+Epoch:  1  	Training Loss: 83.348406    	Training Acc:  28.208 %
+Accuracy on Testing images: Testing Acc:  31.000 %
+Loss and Accuracy on Validation images: Validation Loss: 23.606520    	Validation Acc:  28.000 %
+Epoch:  2  	Training Loss: 9.717200    	Training Acc:  27.208 %
+Accuracy on Testing images: Testing Acc:  24.333 %
+Loss and Accuracy on Validation images: Validation Loss: 3.957085    	Validation Acc:  27.333 %
+Epoch:  3  	Training Loss: 2.252463    	Training Acc:  28.833 %
+Accuracy on Testing images: Testing Acc:  30.667 %
+Loss and Accuracy on Validation images: Validation Loss: 1.821079    	Validation Acc:  27.000 %
+Epoch:  4  	Training Loss: 1.770684    	Training Acc:  29.875 %
+Accuracy on Testing images: Testing Acc:  24.333 %
+Loss and Accuracy on Validation images: Validation Loss: 1.717987    	Validation Acc:  29.333 %
+Epoch:  5  	Training Loss: 1.574484    	Training Acc:  31.375 %
+Accuracy on Testing images: Testing Acc:  26.667 %
+Loss and Accuracy on Validation images: Validation Loss: 1.465966    	Validation Acc:  32.000 %
+Epoch:  6  	Training Loss: 1.563600    	Training Acc:  28.500 %
+Accuracy on Testing images: Testing Acc:  28.000 %
+Loss and Accuracy on Validation images: Validation Loss: 1.617677    	Validation Acc:  33.333 %
+Epoch:  7  	Training Loss: 1.470541    	Training Acc:  30.917 %
+Accuracy on Testing images: Testing Acc:  33.000 %
+Loss and Accuracy on Validation images: Validation Loss: 1.674611    	Validation Acc:  31.000 %
+Epoch:  8  	Training Loss: 1.477677    	Training Acc:  30.625 %
+Accuracy on Testing images: Testing Acc:  28.667 %
+Loss and Accuracy on Validation images: Validation Loss: 1.412233    	Validation Acc:  35.667 %
+Epoch:  9  	Training Loss: 1.444428    	Training Acc:  31.792 %
+Accuracy on Testing images: Testing Acc:  29.000 %
+Loss and Accuracy on Validation images: Validation Loss: 1.443048    	Validation Acc:  32.667 %
+Epoch:  10  	Training Loss: 1.424156    	Training Acc:  31.000 %
+Accuracy on Testing images: Testing Acc:  33.000 %
+Loss and Accuracy on Validation images: Validation Loss: 1.330439    	Validation Acc:  33.000 %
+Epoch:  11  	Training Loss: 1.406050    	Training Acc:  32.625 %
+Accuracy on Testing images: Testing Acc:  30.000 %
+Loss and Accuracy on Validation images: Validation Loss: 1.410922    	Validation Acc:  35.000 %
+Epoch:  12  	Training Loss: 1.368745    	Training Acc:  34.208 %
+Accuracy on Testing images: Testing Acc:  33.000 %
+Loss and Accuracy on Validation images: Validation Loss: 1.339322    	Validation Acc:  35.000 %
+Epoch:  13  	Training Loss: 1.364643    	Training Acc:  35.083 %
+Accuracy on Testing images: Testing Acc:  34.333 %
+Loss and Accuracy on Validation images: Validation Loss: 1.353206    	Validation Acc:  35.000 %
+Epoch:  14  	Training Loss: 1.354090    	Training Acc:  32.958 %
+Accuracy on Testing images: Testing Acc:  34.333 %
+Loss and Accuracy on Validation images: Validation Loss: 1.357454    	Validation Acc:  37.667 %
+Epoch:  15  	Training Loss: 1.338871    	Training Acc:  35.167 %
+Accuracy on Testing images: Testing Acc:  34.667 %
+Loss and Accuracy on Validation images: Validation Loss: 1.317622    	Validation Acc:  36.333 %
+Epoch:  16  	Training Loss: 1.331220    	Training Acc:  36.000 %
+Accuracy on Testing images: Testing Acc:  34.667 %
+Loss and Accuracy on Validation images: Validation Loss: 1.354021    	Validation Acc:  37.667 %
+Epoch:  17  	Training Loss: 1.331145    	Training Acc:  35.875 %
+Accuracy on Testing images: Testing Acc:  34.000 %
+Loss and Accuracy on Validation images: Validation Loss: 1.302958    	Validation Acc:  35.333 %
+Epoch:  18  	Training Loss: 1.311418    	Training Acc:  36.500 %
+Accuracy on Testing images: Testing Acc:  30.333 %
+Loss and Accuracy on Validation images: Validation Loss: 1.285929    	Validation Acc:  37.000 %
+Epoch:  19  	Training Loss: 1.313224    	Training Acc:  36.875 %
+Accuracy on Testing images: Testing Acc:  37.333 %
+Loss and Accuracy on Validation images: Validation Loss: 1.283243    	Validation Acc:  41.667 %
+Epoch:  20  	Training Loss: 1.293117    	Training Acc:  39.083 %
+Accuracy on Testing images: Testing Acc:  34.000 %
+Loss and Accuracy on Validation images: Validation Loss: 1.258761    	Validation Acc:  39.333 %
+Epoch:  21  	Training Loss: 1.305100    	Training Acc:  37.167 %
+Accuracy on Testing images: Testing Acc:  38.667 %
+Loss and Accuracy on Validation images: Validation Loss: 1.271420    	Validation Acc:  39.333 %
+Epoch:  22  	Training Loss: 1.271812    	Training Acc:  38.667 %
+Accuracy on Testing images: Testing Acc:  40.000 %
+Loss and Accuracy on Validation images: Validation Loss: 1.252329    	Validation Acc:  38.333 %
+Epoch:  23  	Training Loss: 1.273255    	Training Acc:  40.083 %
+Accuracy on Testing images: Testing Acc:  39.667 %
+Loss and Accuracy on Validation images: Validation Loss: 1.252120    	Validation Acc:  42.667 %
+Epoch:  24  	Training Loss: 1.284141    	Training Acc:  39.417 %
+Accuracy on Testing images: Testing Acc:  41.000 %
+Loss and Accuracy on Validation images: Validation Loss: 1.234975    	Validation Acc:  42.667 %
+Epoch:  25  	Training Loss: 1.283149    	Training Acc:  40.667 %
+Accuracy on Testing images: Testing Acc:  40.333 %
+Loss and Accuracy on Validation images: Validation Loss: 1.304361    	Validation Acc:  42.667 %
+Epoch:  26  	Training Loss: 1.269386    	Training Acc:  41.250 %
+Accuracy on Testing images: Testing Acc:  42.000 %
+Loss and Accuracy on Validation images: Validation Loss: 1.301045    	Validation Acc:  45.333 %
+Epoch:  27  	Training Loss: 1.233557    	Training Acc:  42.458 %
+Accuracy on Testing images: Testing Acc:  41.333 %
+Loss and Accuracy on Validation images: Validation Loss: 1.137933    	Validation Acc:  46.667 %
+Epoch:  28  	Training Loss: 1.237520    	Training Acc:  41.958 %
+Accuracy on Testing images: Testing Acc:  42.667 %
+Loss and Accuracy on Validation images: Validation Loss: 1.160272    	Validation Acc:  43.000 %
+Epoch:  29  	Training Loss: 1.187038    	Training Acc:  44.667 %
+Accuracy on Testing images: Testing Acc:  44.000 %
+Loss and Accuracy on Validation images: Validation Loss: 1.122879    	Validation Acc:  50.000 %
+Epoch:  30  	Training Loss: 1.184849    	Training Acc:  44.833 %
+Accuracy on Testing images: Testing Acc:  46.333 %
+Loss and Accuracy on Validation images: Validation Loss: 1.089512    	Validation Acc:  51.000 %
+Epoch:  31  	Training Loss: 1.177544    	Training Acc:  46.125 %
+Accuracy on Testing images: Testing Acc:  47.667 %
+Loss and Accuracy on Validation images: Validation Loss: 1.142184    	Validation Acc:  48.333 %
+Epoch:  32  	Training Loss: 1.189773    	Training Acc:  45.708 %
+Accuracy on Testing images: Testing Acc:  42.333 %
+Loss and Accuracy on Validation images: Validation Loss: 1.200405    	Validation Acc:  42.000 %
+Epoch:  33  	Training Loss: 1.160672    	Training Acc:  45.833 %
+Accuracy on Testing images: Testing Acc:  49.667 %
+Loss and Accuracy on Validation images: Validation Loss: 1.292549    	Validation Acc:  50.667 %
+Epoch:  34  	Training Loss: 1.158702    	Training Acc:  49.125 %
+Accuracy on Testing images: Testing Acc:  46.667 %
+Loss and Accuracy on Validation images: Validation Loss: 1.096988    	Validation Acc:  48.667 %
+Epoch:  35  	Training Loss: 1.149220    	Training Acc:  47.875 %
+Accuracy on Testing images: Testing Acc:  42.000 %
+Loss and Accuracy on Validation images: Validation Loss: 1.133118    	Validation Acc:  45.667 %
+Epoch:  36  	Training Loss: 1.126042    	Training Acc:  49.208 %
+Accuracy on Testing images: Testing Acc:  49.000 %
+Loss and Accuracy on Validation images: Validation Loss: 1.113199    	Validation Acc:  47.333 %
+Epoch:  37  	Training Loss: 1.101488    	Training Acc:  50.708 %
+Accuracy on Testing images: Testing Acc:  47.333 %
+Loss and Accuracy on Validation images: Validation Loss: 1.126252    	Validation Acc:  50.000 %
+Epoch:  38  	Training Loss: 1.100312    	Training Acc:  49.125 %
+Accuracy on Testing images: Testing Acc:  47.000 %
+Loss and Accuracy on Validation images: Validation Loss: 1.112972    	Validation Acc:  48.667 %
+Epoch:  39  	Training Loss: 1.184864    	Training Acc:  46.750 %
+Accuracy on Testing images: Testing Acc:  50.333 %
+Loss and Accuracy on Validation images: Validation Loss: 1.153045    	Validation Acc:  52.000 %
+Epoch:  40  	Training Loss: 1.095561    	Training Acc:  49.292 %
+Accuracy on Testing images: Testing Acc:  48.000 %
+Loss and Accuracy on Validation images: Validation Loss: 1.124682    	Validation Acc:  49.667 %
+EARLY STOP SATISFIES, STOP TRAINING
+---Traing Process End---
+Best Test Accuracy is: 46.333 %
