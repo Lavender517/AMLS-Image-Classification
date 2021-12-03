@@ -4,33 +4,40 @@ from torch.utils.data import Dataset, DataLoader
 from torch.utils.data import random_split
 from torch.utils.tensorboard import SummaryWriter   
 from dataloader_pytorch import ImageDataset
+from dataloader_pytorch_fixed import FixedDataset
 from model_mlp import MLP
+from model_mlp_softmax import MLP_softmax
 import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--dir_path', type=str, default='./dataset/', help='The dataset saved path')
 parser.add_argument('--batch_size', type=int, default=64, help='The data to be included in each epoch')
+parser.add_argument('--num_workers', type=int, default=0, help='The data to be included in each epoch')
 parser.add_argument('--n_epochs', type=int, default=100, help='Training epochs = samples_num / batch_size')
-parser.add_argument('--lr', type=float, default=0.001, help='Learning Rate')
-parser.add_argument('--weight_decay', type=float, default=1e-5, help='Regularization coefficient, usually use 5 times, for example: 1e-4/5e-4/1e-5/5e-5')
+parser.add_argument('--lr', type=float, default=0.0001, help='Learning Rate')
+parser.add_argument('--weight_decay', type=float, default=5e-5, help='Regularization coefficient, usually use 5 times, for example: 1e-4/5e-4/1e-5/5e-5')
 parser.add_argument('--dropout', type=float, default=0.15, help='Dropout coefficient')
-parser.add_argument('--device', type=int, default=1, help='The specified GPU number to be used')
+parser.add_argument('--device', type=int, default=2, help='The specified GPU number to be used')
 parser.add_argument('--early_stop_TH', type=int, default=10, help='The theshold value of the valid_loss continue_bigger_num in early stopping criterion')
 args = parser.parse_args()
 
 # device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-model = MLP(args.dropout)
+# model = MLP(args.dropout)
+model = MLP_softmax()
 model.initialize()
 model.to(args.device)
 
-Imgdataset = ImageDataset(args.dir_path)
-train_size = int(len(Imgdataset)*0.8)
-valid_size = int(len(Imgdataset)*0.1)
-test_size = int(len(Imgdataset)*0.1)
-train_data, valid_data, test_data = random_split(Imgdataset, [train_size, valid_size, test_size])
-train_loader = DataLoader(train_data, batch_size = args.batch_size, num_workers=16, shuffle=True)
-valid_loader = DataLoader(valid_data, batch_size = args.batch_size, num_workers=16, shuffle=True)
-test_loader = DataLoader(test_data, batch_size = args.batch_size, num_workers=16, shuffle=True)
+
+train_data = FixedDataset(args.dir_path, 'train')
+print("Train_data Finished!")
+valid_data = FixedDataset(args.dir_path, 'valid')
+print("Valid_data Finished!")
+test_data = FixedDataset(args.dir_path, 'test')
+print("Test_data Finished!")
+
+train_loader = DataLoader(train_data, batch_size = args.batch_size, shuffle=True)
+valid_loader = DataLoader(valid_data, batch_size = args.batch_size, shuffle=True)
+test_loader = DataLoader(test_data, batch_size = args.batch_size, shuffle=True)
 
 log_writer = SummaryWriter() # Write log file
 
@@ -38,6 +45,7 @@ log_writer = SummaryWriter() # Write log file
 lossfunc = torch.nn.CrossEntropyLoss()
 # optimizer = torch.optim.SGD(params = model.parameters(), lr = args.lr)
 optimizer = torch.optim.AdamW(params = model.parameters(), lr = args.lr, weight_decay=args.weight_decay)
+# optimizer = torch.optim.AdamW(params = model.parameters(), lr = args.lr)
 
 def train():
     '''
