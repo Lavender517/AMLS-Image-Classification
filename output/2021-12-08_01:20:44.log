@@ -85,3 +85,81 @@ Validation Loss:     0.51 | Val Acc:    85.33
 Train Loss:     0.03 | Training Acc:    99.33
 Testing Acc:     83.00
 Validation Loss:     0.55 | Val Acc:    84.33
+----------------EPOCH 22-------------------
+Train Loss:     0.03 | Training Acc:    99.29
+Testing Acc:     82.83
+Validation Loss:     0.66 | Val Acc:    84.67
+----------------EPOCH 23-------------------
+Train Loss:     0.02 | Training Acc:    99.17
+Testing Acc:     84.00
+Validation Loss:     0.56 | Val Acc:    86.33
+----------------EPOCH 24-------------------
+Train Loss:     0.03 | Training Acc:    99.46
+Testing Acc:     85.00
+Validation Loss:     0.58 | Val Acc:    86.33
+----------------EPOCH 25-------------------
+Train Loss:     0.03 | Training Acc:    99.33
+Testing Acc:     84.00
+Validation Loss:     0.55 | Val Acc:    86.33
+----------------EPOCH 26-------------------
+Train Loss:     0.03 | Training Acc:    99.38
+Testing Acc:     83.00
+Validation Loss:     0.58 | Val Acc:    84.67
+----------------EPOCH 27-------------------
+Train Loss:     0.02 | Training Acc:    99.50
+Testing Acc:     82.67
+Validation Loss:     0.71 | Val Acc:    84.33
+----------------EPOCH 28-------------------
+Train Loss:     0.02 | Training Acc:    99.54
+Testing Acc:     84.00
+Validation Loss:     0.67 | Val Acc:    85.33
+----------------EPOCH 29-------------------
+Train Loss:     0.02 | Training Acc:    99.50
+Testing Acc:     84.50
+Validation Loss:     0.67 | Val Acc:    87.33
+----------------EPOCH 30-------------------
+Train Loss:     0.03 | Training Acc:    99.29
+Testing Acc:     82.17
+Validation Loss:     0.70 | Val Acc:    83.67
+----------------EPOCH 31-------------------
+Train Loss:     0.03 | Training Acc:    99.58
+Testing Acc:     84.33
+Validation Loss:     0.62 | Val Acc:    85.67
+----------------EPOCH 32-------------------
+Train Loss:     0.02 | Training Acc:    99.50
+Testing Acc:     82.83
+Validation Loss:     0.71 | Val Acc:    85.00
+----------------EPOCH 33-------------------
+Train Loss:     0.03 | Training Acc:    99.12
+Testing Acc:     82.67
+Validation Loss:     0.84 | Val Acc:    83.67
+----------------EPOCH 34-------------------
+Train Loss:     0.03 | Training Acc:    99.25
+Testing Acc:     80.83
+Validation Loss:     0.91 | Val Acc:    78.33
+----------------EPOCH 35-------------------
+Train Loss:     0.04 | Training Acc:    99.12
+Testing Acc:     81.50
+Validation Loss:     0.78 | Val Acc:    82.33
+----------------EPOCH 36-------------------
+Train Loss:     0.03 | Training Acc:    98.92
+Testing Acc:     83.83
+Validation Loss:     0.78 | Val Acc:    85.00
+----------------EPOCH 37-------------------
+Train Loss:     0.02 | Training Acc:    99.33
+Testing Acc:     82.17
+Validation Loss:     0.94 | Val Acc:    82.67
+----------------EPOCH 38-------------------
+Train Loss:     0.02 | Training Acc:    99.50
+Testing Acc:     81.33
+Validation Loss:     1.11 | Val Acc:    82.33
+----------------EPOCH 39-------------------
+Train Loss:     0.01 | Training Acc:    99.62
+Testing Acc:     84.67
+Validation Loss:     0.86 | Val Acc:    85.33
+----------------EPOCH 40-------------------
+Train Loss:     0.02 | Training Acc:    99.29
+Testing Acc:     82.33
+Validation Loss:     0.82 | Val Acc:    83.33
+---Traing Process End---
+Best Test Accuracy is: 84.500 %
