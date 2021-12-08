@@ -1,9 +1,6 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F   # 激励函数的库
-from torchvision import datasets
-import torchvision.transforms as transforms
-import numpy as np
 
 class MLP(torch.nn.Module):   # 继承 torch 的 Module
     def __init__(self, dropout_coef):

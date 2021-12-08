@@ -35,3 +35,8 @@ dataset_path = './dataset/'
 
 if __name__ == '__main__':
     get_images_and_labels(dataset_path)
+    
+    # import torch as th
+    # a = th.randn(224, 224, 1)
+    # b = a.repeat(1, 1, 3)
+    # print(b.shape)

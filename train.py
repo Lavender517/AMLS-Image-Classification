@@ -1,58 +1,52 @@
 from numpy import imag
 import torch
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import Dataset, DataLoader, Subset
 from torch.utils.data import random_split
 from torch.utils.tensorboard import SummaryWriter   
 from dataloader_pytorch import ImageDataset
-from dataloader_pytorch_fixed import FixedDataset
 from model_mlp import MLP
 from model_mlp_softmax import MLP_softmax
+from model_cnn import CNN
+from model_vgg import VGG16
 import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--dir_path', type=str, default='./dataset/', help='The dataset saved path')
 parser.add_argument('--batch_size', type=int, default=64, help='The data to be included in each epoch')
-parser.add_argument('--num_workers', type=int, default=0, help='The data to be included in each epoch')
-parser.add_argument('--n_epochs', type=int, default=100, help='Training epochs = samples_num / batch_size')
-parser.add_argument('--lr', type=float, default=0.0001, help='Learning Rate')
-parser.add_argument('--weight_decay', type=float, default=5e-5, help='Regularization coefficient, usually use 5 times, for example: 1e-4/5e-4/1e-5/5e-5')
-parser.add_argument('--dropout', type=float, default=0.15, help='Dropout coefficient')
-parser.add_argument('--device', type=int, default=2, help='The specified GPU number to be used')
-parser.add_argument('--early_stop_TH', type=int, default=10, help='The theshold value of the valid_loss continue_bigger_num in early stopping criterion')
+parser.add_argument('--num_workers', type=int, default=16, help='How many subprocesses to use for data loading')
+parser.add_argument('--n_epochs', type=int, default=40, help='Training epochs = samples_num / batch_size')
+parser.add_argument('--lr', type=float, default=2e-4, help='Learning Rate')
+parser.add_argument('--weight_decay', type=float, default=1e-4, help='Regularization coefficient, usually use 5 times, for example: 1e-4/5e-4/1e-5/5e-5')
+parser.add_argument('--dropout', type=float, default=0.5, help='Dropout coefficient')
+parser.add_argument('--device', type=int, default=4, help='The specified GPU number to be used')
+parser.add_argument('--early_stop_TH', type=int, default=15, help='The theshold value of the valid_loss continue_bigger_num in early stopping criterion')
 args = parser.parse_args()
 
 # device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-# model = MLP(args.dropout)
-model = MLP_softmax()
+model = CNN(args.dropout).to(args.device)
+# model = VGG16().to(args.device)
 model.initialize()
-model.to(args.device)
 
-
-train_data = FixedDataset(args.dir_path, 'train')
-print("Train_data Finished!")
-valid_data = FixedDataset(args.dir_path, 'valid')
-print("Valid_data Finished!")
-test_data = FixedDataset(args.dir_path, 'test')
-print("Test_data Finished!")
-
-train_loader = DataLoader(train_data, batch_size = args.batch_size, shuffle=True)
-valid_loader = DataLoader(valid_data, batch_size = args.batch_size, shuffle=True)
-test_loader = DataLoader(test_data, batch_size = args.batch_size, shuffle=True)
-
-log_writer = SummaryWriter() # Write log file
+Imgdataset = ImageDataset(args.dir_path)
+train_data = Subset(Imgdataset, list(range(2400)))
+valid_data = Subset(Imgdataset, list(range(2400, 2700)))
+test_data = Subset(Imgdataset, list(range(2400, 3000)))
+train_loader = DataLoader(train_data, batch_size = args.batch_size, num_workers=args.num_workers, shuffle=True)
+valid_loader = DataLoader(valid_data, batch_size = args.batch_size, num_workers=args.num_workers, shuffle=False)
+test_loader = DataLoader(test_data, batch_size = args.batch_size, num_workers=args.num_workers, shuffle=False)
 
 #Define the loss function and optimizer
 lossfunc = torch.nn.CrossEntropyLoss()
 # optimizer = torch.optim.SGD(params = model.parameters(), lr = args.lr)
 optimizer = torch.optim.AdamW(params = model.parameters(), lr = args.lr, weight_decay=args.weight_decay)
-# optimizer = torch.optim.AdamW(params = model.parameters(), lr = args.lr)
 
 def train():
     '''
     Train the Model
     '''
 
-    best_val_loss, continue_bigger_num, batch_num = float('inf'), 0, 0
+    best_val_acc, continue_bigger_num, batch_num = 0, 0, 0
+    log_writer = SummaryWriter() # Write log file
 
     # Begin to train
     for epoch in range(args.n_epochs):
@@ -71,16 +65,17 @@ def train():
             log_writer.add_scalar('Loss/Train', float(loss), batch_num) # Draw in Tensorboard
         total = len(train_data)
         train_acc = 100 * correct / total
-        print('Epoch:  {}  \tTraining Loss: {:.6f}    \tTraining Acc:  {:.3f} %'.format(epoch + 1, train_loss / total, train_acc))
+        print(f'----------------EPOCH {epoch + 1}-------------------')
+        print(f'Train Loss: {(train_loss / total):8.2f} | Training Acc: {train_acc:8.2f}')
 
         # Run through the data set each time to test for accuracy
         test_acc = test()
         
-        valid_loss, _ = valid()
+        valid_loss, valid_acc = valid()
         log_writer.add_scalar('Loss/Validation', float(valid_loss), epoch) # Write in Tensorboard
         # Early Stop, if valid_acc continuely increases from last 'early_stop_TH'(5 in default) epoch, stop training
-        if valid_loss <= best_val_loss:
-            best_val_loss = valid_loss
+        if valid_acc > best_val_acc:
+            best_val_acc = valid_acc
             best_test_acc = test_acc
             continue_bigger_num = 0
         else:
@@ -106,10 +101,10 @@ def valid():
             _, predicted = torch.max(outputs.data, 1) # Return the maximum values of each row
             valid_loss += loss.item()*images.size(0)
             correct += (predicted == labels).sum().item()
-    total = len(test_data)
+    total = len(valid_data)
     valid_acc = 100 * correct / total
     valid_loss = valid_loss / total
-    print('Loss and Accuracy on Validation images: Validation Loss: {:.6f}    \tValidation Acc:  {:.3f} %'.format(valid_loss, valid_acc))
+    print(f'Validation Loss: {valid_loss:8.2f} | Val Acc: {valid_acc:8.2f}')
     return valid_loss, valid_acc
 
 
@@ -128,7 +123,7 @@ def test():
             correct += (predicted == labels).sum().item()
     total = len(test_data)
     test_acc = 100 * correct / total
-    print('Accuracy on Testing images: Testing Acc:  {:.3f} %'.format(test_acc))
+    print(f'Testing Acc:  {test_acc:8.2f}')
     return test_acc
 
 if __name__ == '__main__':
