@@ -3,7 +3,8 @@ import torch
 from torch.utils.data import Dataset, DataLoader, Subset
 from torch.utils.data import random_split
 from torch.utils.tensorboard import SummaryWriter   
-from dataloader_pytorch import ImageDataset
+from dataloader_random import ImageDataset
+from dataloader_preprocessing import PreProcSet
 from model_mlp import MLP
 from model_mlp_softmax import MLP_softmax
 from model_cnn import CNN
@@ -14,20 +15,21 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--dir_path', type=str, default='./dataset/', help='The dataset saved path')
 parser.add_argument('--batch_size', type=int, default=64, help='The data to be included in each epoch')
 parser.add_argument('--num_workers', type=int, default=16, help='How many subprocesses to use for data loading')
-parser.add_argument('--n_epochs', type=int, default=40, help='Training epochs = samples_num / batch_size')
+parser.add_argument('--n_epochs', type=int, default=60, help='Training epochs = samples_num / batch_size')
 parser.add_argument('--lr', type=float, default=2e-4, help='Learning Rate')
-parser.add_argument('--weight_decay', type=float, default=1e-4, help='Regularization coefficient, usually use 5 times, for example: 1e-4/5e-4/1e-5/5e-5')
+parser.add_argument('--weight_decay', type=float, default=1e-5, help='Regularization coefficient, usually use 5 times, for example: 1e-4/5e-4/1e-5/5e-5')
 parser.add_argument('--dropout', type=float, default=0.5, help='Dropout coefficient')
-parser.add_argument('--device', type=int, default=4, help='The specified GPU number to be used')
-parser.add_argument('--early_stop_TH', type=int, default=15, help='The theshold value of the valid_loss continue_bigger_num in early stopping criterion')
+parser.add_argument('--device', type=int, default=2, help='The specified GPU number to be used')
+parser.add_argument('--early_stop_TH', type=int, default=10, help='The theshold value of the valid_loss continue_bigger_num in early stopping criterion')
 args = parser.parse_args()
 
 # device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 model = CNN(args.dropout).to(args.device)
 # model = VGG16().to(args.device)
-model.initialize()
+# model.initialize()
 
 Imgdataset = ImageDataset(args.dir_path)
+# Imgdataset = PreProcSet(args.dir_path)
 train_data = Subset(Imgdataset, list(range(2400)))
 valid_data = Subset(Imgdataset, list(range(2400, 2700)))
 test_data = Subset(Imgdataset, list(range(2400, 3000)))

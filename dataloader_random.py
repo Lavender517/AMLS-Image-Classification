@@ -27,7 +27,7 @@ def get_images_and_labels(dir_path):
     return images_list, labels_list
 
 class ImageDataset(Dataset):
-    def __init__(self, dir_path, transform=None):
+    def __init__(self, dir_path):
         self.dir_path = dir_path    # 数据集根目录
         self.transform = transforms.Compose([
             transforms.Grayscale(num_output_channels=1), # Convert the 3-channels RGB image to 1-channel Gray-scale image

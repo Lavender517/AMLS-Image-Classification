@@ -11,7 +11,7 @@ from torchvision.transforms import transforms
 
 dataset_path = './dataset/'
 
-def get_images_and_labels(dir_path, set_type):
+def get_images_and_labels(dir_path):
     '''
     从图像数据集的根目录dir_path下获取所有类别的图像名列表和对应的标签名列表
     :param dir_path: 图像数据集的根目录
@@ -24,29 +24,21 @@ def get_images_and_labels(dir_path, set_type):
     images_list = dataset_csv['file_name']                        # images_name list
     labels_list = dataset_csv['label'].apply(data_classes.index)  # labels list
 
-    if set_type == 'train':
-        fixed_images_list = images_list[:2400]
-        fixed_labels_list = labels_list[:2400]
+    return images_list, labels_list
 
-    elif set_type == 'valid':
-        fixed_images_list = images_list[2400:2700]
-        fixed_labels_list = labels_list[2400:2700]
-
-    elif set_type == 'test':
-        fixed_images_list = images_list[2700:]
-        fixed_labels_list = labels_list[2700:]
-
-    return fixed_images_list.values, fixed_labels_list.values
-
-class FixedDataset(Dataset):
-    def __init__(self, dir_path, set_type, transform=None):
+class PreProcSet(Dataset):
+    def __init__(self, dir_path):
         self.dir_path = dir_path    # 数据集根目录
-        self.set_type = set_type    # Train / Valid / Test
         self.transform = transforms.Compose([
-            transforms.Grayscale(num_output_channels=1), # Convert the 3-channels RGB image to 1-channel Gray-scale image
-            transforms.ToTensor() # Normalization, convert the values of X from (0,255) to (0,1)
+            # transforms.Resize(256),
+            # transforms.CenterCrop(224),
+            transforms.Resize(224),
+            transforms.ToTensor(),
+            transforms.Normalize(
+            mean = [.485, .456, .406], 
+            std = [.229, .224, .225]) # Normalization, convert the values of X from (0,255) to (0,1)
         ])
-        self.images, self.labels = get_images_and_labels(self.dir_path, self.set_type)
+        self.images, self.labels = get_images_and_labels(self.dir_path)
 
     def __len__(self):
         # 返回数据集的数据数量
@@ -62,7 +54,13 @@ class FixedDataset(Dataset):
         return sample
 
 if __name__ == '__main__':
-    test_data = FixedDataset(dataset_path, 'train')
-    dataloader = DataLoader(test_data, batch_size = 64, shuffle=True)
+    Imgdataset = ImageDataset(dataset_path)
+    train_size = int(len(Imgdataset)*0.8)
+    valid_size = int(len(Imgdataset)*0.1)
+    test_size = int(len(Imgdataset)*0.1)
+    train_data, valid_data, test_data = random_split(Imgdataset, [train_size, valid_size, test_size])
+    print(train_data)
+    dataloader = DataLoader(train_data, batch_size = 64, shuffle=True)
+    print(dataloader)
     for index, batch_data in enumerate(dataloader):
         print(index, batch_data['image'].shape, batch_data['label'].shape)

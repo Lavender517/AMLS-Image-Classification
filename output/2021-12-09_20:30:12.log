@@ -1,0 +1,17 @@
+BEGIN TO LOAD DATA!
+Traceback (most recent call last):
+  File "/home/uceehx2/AMLS-Image-Classification/train.py", line 132, in <module>
+    best_test_acc = train()
+  File "/home/uceehx2/AMLS-Image-Classification/train.py", line 61, in train
+    outputs = model(images)    # 得到预测值
+  File "/home/uceehx2/AMLS/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/uceehx2/AMLS-Image-Classification/model_cnn.py", line 21, in forward
+    x = F.relu(self.fc1(x))
+  File "/home/uceehx2/AMLS/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/uceehx2/AMLS/lib/python3.9/site-packages/torch/nn/modules/linear.py", line 94, in forward
+    return F.linear(input, self.weight, self.bias)
+  File "/home/uceehx2/AMLS/lib/python3.9/site-packages/torch/nn/functional.py", line 1753, in linear
+    return torch._C._nn.linear(input, weight, bias)
+RuntimeError: mat1 dim 1 must match mat2 dim 0
