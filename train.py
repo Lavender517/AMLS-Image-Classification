@@ -5,10 +5,10 @@ from torch.utils.data import random_split
 from torch.utils.tensorboard import SummaryWriter   
 from dataloader_random import ImageDataset
 from dataloader_preprocessing import PreProcSet
-from model_mlp import MLP
 from model_mlp_softmax import MLP_softmax
+from model_mlp import MLP
 from model_cnn import CNN
-from model_vgg import VGG16
+from model_vgg import VGG16, pre_trained_VGG16
 import argparse
 
 parser = argparse.ArgumentParser()
@@ -21,14 +21,37 @@ parser.add_argument('--weight_decay', type=float, default=1e-5, help='Regulariza
 parser.add_argument('--dropout', type=float, default=0.5, help='Dropout coefficient')
 parser.add_argument('--device', type=int, default=2, help='The specified GPU number to be used')
 parser.add_argument('--early_stop_TH', type=int, default=10, help='The theshold value of the valid_loss continue_bigger_num in early stopping criterion')
+parser.add_argument('--model', type=int, default=4, help='The specifc deep learning model to be chosed')
 args = parser.parse_args()
 
-# device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-model = CNN(args.dropout).to(args.device)
+if args.model == 0:
+    print("---Using model Softmax Regression---")
+    model = MLP_softmax().to(args.device)
+    model.initialize()
+    Imgdataset = ImageDataset(args.dir_path)
+elif args.model == 1:
+    print("---Using model MLP---")
+    model = MLP(args.dropout).to(args.device)
+    model.initialize()
+    Imgdataset = ImageDataset(args.dir_path)
+elif args.model == 2:
+    print("---Using model Simple CNN---")
+    model = CNN(args.dropout).to(args.device)
+    model.initialize()
+    Imgdataset = ImageDataset(args.dir_path)
+elif args.model == 3:
+    print("---Using model VGG-16---")
+    model = VGG16().to(args.device)
+    Imgdataset = PreProcSet(args.dir_path)
+else:
+    model = pre_trained_VGG16().to(args.device)
+    Imgdataset = PreProcSet(args.dir_path)
+
+# # model = CNN(args.dropout).to(args.device)
 # model = VGG16().to(args.device)
 # model.initialize()
 
-Imgdataset = ImageDataset(args.dir_path)
+# # Imgdataset = ImageDataset(args.dir_path)
 # Imgdataset = PreProcSet(args.dir_path)
 train_data = Subset(Imgdataset, list(range(2400)))
 valid_data = Subset(Imgdataset, list(range(2400, 2700)))
