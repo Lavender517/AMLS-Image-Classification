@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from torchvision import models
 
-class VGG16(nn.Module):
+class VGG16(nn.Module): # VGG-16 Model
     def __init__(self):
         super(VGG16, self).__init__()
         model = models.vgg16(pretrained=False)
@@ -21,7 +21,7 @@ class VGG16(nn.Module):
         x = self.model(x)
         return x
 
-class pre_trained_VGG16(nn.Module):
+class pre_trained_VGG16(nn.Module): # Pre-trained VGG-16 model
     def __init__(self):
         super(pre_trained_VGG16, self).__init__()
         model = models.vgg16(pretrained=True)

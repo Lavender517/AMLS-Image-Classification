@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F   # 激励函数的库
+import torch.nn.functional as F   # Libraries providing activation functions
 
-class MLP_softmax(torch.nn.Module):   # 继承 torch 的 Module
+class MLP_softmax(torch.nn.Module):
     def __init__(self):
         super(MLP_softmax, self).__init__()
         # 初始化单层全连接网络，即softmax regression
@@ -15,7 +15,7 @@ class MLP_softmax(torch.nn.Module):   # 继承 torch 的 Module
         :return: dout
         '''
 
-        din = din.view(-1, 512*512)      # 将一个多行的Tensor,拼接成一行
+        din = din.view(-1, 512*512)      # Concatenate a multi-line Tensor into one line
         dout = self.fc1(din)
         return dout
     

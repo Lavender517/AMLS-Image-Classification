@@ -80,11 +80,11 @@ def train():
         for data in train_loader:
             batch_num += 1
             images, labels = data['image'].to(args.device), data['label'].to(args.device)
-            optimizer.zero_grad()   # 清空上一步的残余更新参数值
-            outputs = model(images)    # 得到预测值
-            loss = lossfunc(outputs, labels)  # 计算两者的误差
-            loss.backward()         # 误差反向传播, 计算参数更新值
-            optimizer.step()        # 将参数更新值施加到 net 的 parameters 上
+            optimizer.zero_grad()
+            outputs = model(images)    # get predicted values
+            loss = lossfunc(outputs, labels)  # calculate the loss function
+            loss.backward()         # Loss back propagation, calculate parameter update value
+            optimizer.step()        # Parameters updating
             train_loss += loss.item()*images.size(0) # item() transform the tensor value of float number
             correct += (outputs.argmax(dim=1) == labels).sum().item()
             log_writer.add_scalar('Loss/Train', float(loss), batch_num) # Draw in Tensorboard
@@ -98,7 +98,7 @@ def train():
         
         valid_loss, valid_acc = valid()
         log_writer.add_scalar('Loss/Validation', float(valid_loss), epoch) # Write in Tensorboard
-        # Early Stop, if valid_acc continuely increases from last 'early_stop_TH'(5 in default) epoch, stop training
+        # Early Stop, if valid_acc continuely increases from last 'early_stop_TH'(10 in default) epoch, stop training
         if valid_acc > best_val_acc:
             best_val_acc = valid_acc
             best_test_acc = test_acc
@@ -140,7 +140,7 @@ def test():
     model.eval()
     correct = 0
     total = 0
-    with torch.no_grad():  # 训练集中不需要反向传播
+    with torch.no_grad():  # NO back propagation in test set
         for data in test_loader:
             images, labels = data['image'].to(args.device), data['label'].to(args.device)
             outputs = model(images)

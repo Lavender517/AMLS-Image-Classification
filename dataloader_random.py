@@ -13,8 +13,8 @@ dataset_path = './dataset/'
 
 def get_images_and_labels(dir_path):
     '''
-    从图像数据集的根目录dir_path下获取所有类别的图像名列表和对应的标签名列表
-    :param dir_path: 图像数据集的根目录
+    Get a list of image names and corresponding labels of all categories from the root directory dir_path of the image data set
+    :param dir_path: root directory of image dataset
     :return: images_list, labels_list
     '''
 
@@ -28,7 +28,7 @@ def get_images_and_labels(dir_path):
 
 class ImageDataset(Dataset):
     def __init__(self, dir_path):
-        self.dir_path = dir_path    # 数据集根目录
+        self.dir_path = dir_path
         self.transform = transforms.Compose([
             transforms.Grayscale(num_output_channels=1), # Convert the 3-channels RGB image to 1-channel Gray-scale image
             transforms.ToTensor() # Normalization, convert the values of X from (0,255) to (0,1)
@@ -36,11 +36,11 @@ class ImageDataset(Dataset):
         self.images, self.labels = get_images_and_labels(self.dir_path)
 
     def __len__(self):
-        # 返回数据集的数据数量
+        # return to the number of samples in the dataset
         return len(self.images)
 
     def __getitem__(self, index):
-        # 支持根据给定的key来获取数据样本
+        # Support to obtain data samples according to the given key
         img_path = self.images[index]
         label = self.labels[index]
         img = Image.open(self.dir_path + 'image/' + img_path) # Image(512, 512)
