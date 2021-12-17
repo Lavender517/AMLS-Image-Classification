@@ -12,7 +12,7 @@ The problem is divided into **binary classification task (task A)** and **multi-
 
 You can build an environment and then install the modules from following command:
 ```
-pip install requirements.txt 
+pip install -r requirements.txt 
 ```
 
 
@@ -106,11 +106,11 @@ BEGIN TO LOAD DATA!
 ```
 Which means you have begun to train successfully.
 For deep learning models, the correspondance for each networks are:
-* 1: Softmax Regression
-* 2: MLP
-* 3: Simple CNN
-* 4: VGG-16
-* 5: Pre-trained VGG-16
+* 0: Softmax Regression
+* 1: MLP
+* 2: Simple CNN
+* 3: VGG-16
+* 4: Pre-trained VGG-16
 
 ## References
 
