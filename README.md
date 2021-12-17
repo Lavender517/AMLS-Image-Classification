@@ -80,7 +80,7 @@ model_mlp.py
 model_cnn.py
 model_vgg.py
 ```
-The above scipts construct four models to implement the deep learning part of task B. While *model_mlp_softmax.py* is another realization of Softmax Regression, *model_mlp.py* builds a MLP model, *model_cnn* constructs simple CNN model, and *model_vgg.py* builds VGG-16 network and its pre-trained version.
+The above scipts construct four models to implement the deep learning part of task B. While *model_mlp_softmax.py* is another realization of Softmax Regression, *model_mlp.py* builds the MLP model, *model_cnn* constructs simple CNN model, and *model_vgg.py* builds VGG-16 network and its pre-trained version.
 ```
 run.sh
 ```
@@ -95,7 +95,7 @@ This file implements the training command to choose specific model from deep lea
 
 When starting to use, select which task to solve and choose a specifci model to implement it.
 
-For example, if I want to test the simple *CNN model* for task B, just use the following command:
+For example, if I want to test the *simple CNN* model for task B, just use the following command:
 ```
 python train.py --model 2
 ```
@@ -114,5 +114,5 @@ For deep learning models, the correspondance for each networks are:
 
 ## References
 
-[1]Sartaj Bhuvaji, Ankita Kadam, Prajakta Bhumkar, Sameer Dedge, and Swati Kanchan, “Brain Tumor 
+[1] Sartaj Bhuvaji, Ankita Kadam, Prajakta Bhumkar, Sameer Dedge, and Swati Kanchan, “Brain Tumor 
 Classification (MRI).” Kaggle, 2020, doi: 10.34740/KAGGLE/DSV/1183165. 
